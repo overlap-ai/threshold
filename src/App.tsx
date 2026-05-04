@@ -31,6 +31,33 @@ export default function App() {
     if (i18n.language !== language) i18n.changeLanguage(language);
   }, [language, i18n]);
 
+  // Track the on-screen keyboard via the VisualViewport API and expose it to
+  // CSS as --kbd-h / --vv-h. Lets dialogs anchor above the keyboard on iOS.
+  useEffect(() => {
+    const root = document.documentElement;
+    const update = () => {
+      const vv = window.visualViewport;
+      if (!vv) {
+        root.style.setProperty('--kbd-h', '0px');
+        root.style.setProperty('--vv-h', `${window.innerHeight}px`);
+        return;
+      }
+      const kbd = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+      root.style.setProperty('--kbd-h', `${kbd}px`);
+      root.style.setProperty('--vv-h', `${vv.height}px`);
+    };
+    update();
+    const vv = window.visualViewport;
+    vv?.addEventListener('resize', update);
+    vv?.addEventListener('scroll', update);
+    window.addEventListener('resize', update);
+    return () => {
+      vv?.removeEventListener('resize', update);
+      vv?.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+  }, []);
+
   if (auth.loading) {
     return (
       <div className="grid min-h-full place-items-center">

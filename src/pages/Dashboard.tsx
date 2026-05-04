@@ -166,17 +166,17 @@ export function DashboardPage() {
                 </PieChart>
               </ResponsiveContainer>
             </div>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
+            <div className="space-y-2 text-sm">
               {totals.pieData.map((p, i) => (
                 <div key={p.name} className="flex items-center gap-2">
                   <span
                     className="h-2.5 w-2.5 shrink-0 rounded-full"
                     style={{ background: SLICE_COLORS[i % SLICE_COLORS.length] }}
                   />
-                  <span className="text-muted-foreground">
+                  <span className="truncate text-muted-foreground">
                     {p.name === 'debt' ? t('dashboard.debt') : t(`accounts.types.${p.name}`)}
                   </span>
-                  <span className="ml-auto tabular font-medium">
+                  <span className="ml-auto shrink-0 tabular font-medium">
                     {formatCurrency(p.value, baseCurrency, i18n.language)}
                   </span>
                 </div>

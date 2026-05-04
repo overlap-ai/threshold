@@ -3,12 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
   DndContext,
-  PointerSensor,
+  MouseSensor,
+  TouchSensor,
   closestCenter,
   useSensor,
   useSensors,
   type DragEndEvent,
 } from '@dnd-kit/core';
+import { restrictToVerticalAxis, restrictToParentElement } from '@dnd-kit/modifiers';
 import {
   SortableContext,
   arrayMove,
@@ -17,8 +19,8 @@ import {
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { Check, Clock, GripVertical, Plus, Sparkles } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { GoalSheet } from '@/components/forms/GoalSheet';
@@ -35,8 +37,8 @@ import { useAccounts } from '@/features/accounts/hooks';
 import { useIncome } from '@/features/income/hooks';
 import { useFxRates, convertTo } from '@/features/fx/hooks';
 import { useSettings } from '@/stores/settingsStore';
-import { formatCurrency } from '@/lib/utils';
 import { projectAll, timeToGoal, weightedScore } from '@/lib/analysis';
+import { formatCurrency } from '@/lib/utils';
 import type { Goal } from '@/lib/types/database';
 
 type SortMode = 'manual' | 'score' | 'timeToGoal' | 'priceAsc' | 'priceDesc';
@@ -111,7 +113,10 @@ export function GoalsPage() {
     return list;
   }, [enriched, sortMode]);
 
-  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 6 } }));
+  const sensors = useSensors(
+    useSensor(MouseSensor, { activationConstraint: { distance: 6 } }),
+    useSensor(TouchSensor, { activationConstraint: { delay: 180, tolerance: 6 } }),
+  );
 
   const handleDragEnd = (e: DragEndEvent) => {
     if (sortMode !== 'manual') return;
@@ -168,7 +173,12 @@ export function GoalsPage() {
           </CardContent>
         </Card>
       ) : (
-        <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+          modifiers={[restrictToVerticalAxis, restrictToParentElement]}
+        >
           <SortableContext items={visible.map((v) => v.goal.id)} strategy={verticalListSortingStrategy}>
             <div className="space-y-2">
               {visible.map(({ goal, score, ttg, priceBase }) => (
@@ -257,6 +267,13 @@ function GoalRow({
     opacity: isDragging ? 0.4 : 1,
   };
 
+  const scoreCls =
+    score >= 4
+      ? 'bg-primary text-primary-foreground shadow-md shadow-primary/30'
+      : score >= 3
+        ? 'bg-primary/15 text-primary'
+        : 'bg-secondary text-muted-foreground';
+
   return (
     <div
       ref={setNodeRef}
@@ -264,33 +281,46 @@ function GoalRow({
       className="group flex items-stretch overflow-hidden rounded-2xl border border-border/60 bg-card"
     >
       {draggable ? (
-        <button
-          type="button"
+        <div
           {...attributes}
           {...listeners}
-          className="flex w-9 cursor-grab items-center justify-center text-muted-foreground hover:bg-accent active:cursor-grabbing"
           aria-label="drag"
+          role="button"
+          tabIndex={0}
+          style={{
+            touchAction: 'none',
+            WebkitUserSelect: 'none',
+            WebkitTouchCallout: 'none',
+            WebkitUserDrag: 'none',
+          } as React.CSSProperties}
+          className="flex w-12 shrink-0 cursor-grab items-center justify-center text-muted-foreground/70 hover:bg-accent hover:text-foreground active:cursor-grabbing"
         >
-          <GripVertical className="h-4 w-4" />
-        </button>
+          <GripVertical className="h-5 w-5 pointer-events-none" />
+        </div>
       ) : null}
       <button onClick={onClick} className="flex flex-1 items-center gap-3 px-3 py-3 text-left">
+        <div
+          className={cn(
+            'grid h-11 w-11 shrink-0 place-items-center rounded-xl text-base font-bold tabular leading-none transition-colors',
+            scoreCls,
+          )}
+        >
+          {score.toFixed(1)}
+        </div>
         <div className="min-w-0 flex-1">
           <div className="truncate font-medium">{goal.name}</div>
-          <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs">
+          <div className="mt-1 text-xs text-muted-foreground">
             {ttg.achievableNow ? (
-              <Badge variant="success" className="gap-1">
+              <span className="inline-flex items-center gap-1 text-success">
                 <Sparkles className="h-3 w-3" />
                 {t('goals.achievableNow')}
-              </Badge>
+              </span>
             ) : ttg.daysToGoal !== null ? (
-              <Badge variant="outline" className="gap-1">
+              <span className="inline-flex items-center gap-1">
                 <Clock className="h-3 w-3" />
                 {t('goals.daysToGoal', { days: ttg.daysToGoal })}
-              </Badge>
+              </span>
             ) : null}
-            <span className="text-muted-foreground">U{goal.urgency} · I{goal.importance} · R{goal.roi}</span>
-            <span className="text-muted-foreground tabular">· {score.toFixed(1)}</span>
           </div>
         </div>
         <div className="text-right">
