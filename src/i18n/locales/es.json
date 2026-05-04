@@ -1,0 +1,164 @@
+{
+  "app": {
+    "name": "Threshold",
+    "tagline": "Capital y metas, sin ruido."
+  },
+  "nav": {
+    "dashboard": "Inicio",
+    "goals": "Metas",
+    "income": "Ingresos",
+    "settings": "Ajustes"
+  },
+  "auth": {
+    "signIn": "Entrar",
+    "signUp": "Crear cuenta",
+    "email": "Correo",
+    "password": "Contraseña",
+    "passwordHint": "Mínimo 8 caracteres",
+    "noAccount": "¿No tienes cuenta?",
+    "haveAccount": "¿Ya tienes cuenta?",
+    "create": "Crear cuenta",
+    "enter": "Entrar",
+    "checkEmail": "Revisa tu correo para confirmar la cuenta.",
+    "errors": {
+      "invalidCredentials": "Correo o contraseña incorrectos.",
+      "weakPassword": "La contraseña es muy débil.",
+      "generic": "Algo falló. Intenta de nuevo."
+    }
+  },
+  "dashboard": {
+    "greetings": {
+      "morning": "Buenos días",
+      "afternoon": "Buenas tardes",
+      "evening": "Buenas noches"
+    },
+    "totalCapital": "Capital total",
+    "available": "Disponible",
+    "debt": "Deuda",
+    "net": "Neto",
+    "distribution": "Distribución",
+    "accounts": "Cuentas",
+    "addAccount": "Agregar cuenta",
+    "syncBinance": "Sincronizar Binance",
+    "lastSync": "Sincronizado {{when}}",
+    "noAccounts": "Aún no tienes cuentas registradas.",
+    "createFirst": "Crear primera cuenta"
+  },
+  "accounts": {
+    "types": {
+      "cash": "Efectivo",
+      "bank": "Banco",
+      "credit_card": "Tarjeta de crédito",
+      "crypto": "Cripto",
+      "other": "Otro"
+    },
+    "name": "Nombre",
+    "type": "Tipo",
+    "balance": "Saldo",
+    "currency": "Moneda",
+    "isDebt": "Es deuda",
+    "save": "Guardar",
+    "delete": "Eliminar"
+  },
+  "goals": {
+    "title": "Metas",
+    "addGoal": "Agregar meta",
+    "name": "Qué quieres",
+    "price": "Precio",
+    "currency": "Moneda",
+    "urgency": "Urgencia",
+    "importance": "Importancia",
+    "roi": "ROI personal",
+    "description": "Por qué importa",
+    "status": "Estado",
+    "statuses": {
+      "active": "Activa",
+      "achieved": "Lograda",
+      "archived": "Archivada"
+    },
+    "sortBy": "Ordenar por",
+    "sortOptions": {
+      "manual": "Mi orden",
+      "score": "Score",
+      "timeToGoal": "Tiempo a meta",
+      "priceAsc": "Precio (menor)",
+      "priceDesc": "Precio (mayor)"
+    },
+    "achievableNow": "Alcanzable hoy",
+    "daysToGoal": "{{days}} días",
+    "noGoals": "Aún no tienes metas. Agrega la primera.",
+    "weights": "Pesos del score",
+    "achievedSection": "Logradas",
+    "allAchieved": "Sin metas activas. Revisa las que ya lograste abajo."
+  },
+  "goalDetail": {
+    "summary": "Resumen",
+    "howToAchieve": "Cómo conseguirla",
+    "cashNow": "Comprar hoy con capital disponible",
+    "needsIncome": "Necesitas {{count}} entradas de ingreso",
+    "totalNeeded": "Falta",
+    "withCurrentRate": "Al ritmo actual: {{days}} días",
+    "opportunityCost": "Costo de oportunidad",
+    "delaysOthers": "Retrasa: {{names}}",
+    "markAchieved": "Marcar como lograda",
+    "back": "Volver"
+  },
+  "income": {
+    "title": "Ingresos",
+    "addIncome": "Agregar ingreso",
+    "name": "Nombre",
+    "amount": "Monto",
+    "currency": "Moneda",
+    "frequency": "Frecuencia",
+    "frequencies": {
+      "one_time": "Una vez",
+      "weekly": "Semanal",
+      "biweekly": "Quincenal",
+      "monthly": "Mensual"
+    },
+    "nextDate": "Próxima fecha",
+    "projection90d": "Proyección 90 días",
+    "totalNext90d": "Total próximos 90 días",
+    "noIncome": "Sin ingresos registrados."
+  },
+  "settings": {
+    "title": "Ajustes",
+    "profile": "Perfil",
+    "baseCurrency": "Moneda base",
+    "language": "Idioma",
+    "theme": "Tema",
+    "themes": {
+      "light": "Claro",
+      "dark": "Oscuro",
+      "system": "Sistema"
+    },
+    "binance": "Binance",
+    "binanceConnect": "Conectar Binance",
+    "binanceConnected": "Binance conectado",
+    "binanceDisconnect": "Desconectar",
+    "apiKey": "API Key",
+    "apiSecret": "API Secret",
+    "apiKeyHint": "Crea una API Key con permisos solo de lectura. Nunca habilites trading ni retiros.",
+    "apiKeyDeviceHint": "Las keys se guardan solo en este dispositivo (no en el servidor). Si entras desde otro, tendrás que reconectar.",
+    "saveKeys": "Guardar y probar conexión",
+    "weights": "Pesos del score",
+    "weightsHint": "Del 1 al 5, qué tanto influye cada dimensión al ordenar tus metas. 1 = casi no cuenta, 5 = es lo que más decide.",
+    "weightUrgency": "Peso urgencia",
+    "weightImportance": "Peso importancia",
+    "weightRoi": "Peso ROI",
+    "export": "Exportar datos",
+    "signOut": "Cerrar sesión"
+  },
+  "common": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "loading": "Cargando…",
+    "error": "Error",
+    "retry": "Reintentar",
+    "yes": "Sí",
+    "no": "No",
+    "close": "Cerrar"
+  }
+}

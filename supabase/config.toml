@@ -1,0 +1,9 @@
+project_id = "threshold"
+
+# verify_jwt=false: la plataforma deja pasar OPTIONS (preflight) y nosotros
+# validamos el JWT manualmente dentro de cada función.
+[functions.binance-save-keys]
+verify_jwt = false
+
+[functions.binance-sync]
+verify_jwt = false

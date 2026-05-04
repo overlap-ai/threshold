@@ -1,0 +1,164 @@
+{
+  "app": {
+    "name": "Threshold",
+    "tagline": "Capital and goals, no noise."
+  },
+  "nav": {
+    "dashboard": "Home",
+    "goals": "Goals",
+    "income": "Income",
+    "settings": "Settings"
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "email": "Email",
+    "password": "Password",
+    "passwordHint": "At least 8 characters",
+    "noAccount": "No account?",
+    "haveAccount": "Have an account?",
+    "create": "Create account",
+    "enter": "Sign in",
+    "checkEmail": "Check your email to confirm your account.",
+    "errors": {
+      "invalidCredentials": "Wrong email or password.",
+      "weakPassword": "Password is too weak.",
+      "generic": "Something went wrong. Try again."
+    }
+  },
+  "dashboard": {
+    "greetings": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening"
+    },
+    "totalCapital": "Total capital",
+    "available": "Available",
+    "debt": "Debt",
+    "net": "Net",
+    "distribution": "Distribution",
+    "accounts": "Accounts",
+    "addAccount": "Add account",
+    "syncBinance": "Sync Binance",
+    "lastSync": "Synced {{when}}",
+    "noAccounts": "No accounts yet.",
+    "createFirst": "Create your first account"
+  },
+  "accounts": {
+    "types": {
+      "cash": "Cash",
+      "bank": "Bank",
+      "credit_card": "Credit card",
+      "crypto": "Crypto",
+      "other": "Other"
+    },
+    "name": "Name",
+    "type": "Type",
+    "balance": "Balance",
+    "currency": "Currency",
+    "isDebt": "Is debt",
+    "save": "Save",
+    "delete": "Delete"
+  },
+  "goals": {
+    "title": "Goals",
+    "addGoal": "Add goal",
+    "name": "What you want",
+    "price": "Price",
+    "currency": "Currency",
+    "urgency": "Urgency",
+    "importance": "Importance",
+    "roi": "Personal ROI",
+    "description": "Why it matters",
+    "status": "Status",
+    "statuses": {
+      "active": "Active",
+      "achieved": "Achieved",
+      "archived": "Archived"
+    },
+    "sortBy": "Sort by",
+    "sortOptions": {
+      "manual": "My order",
+      "score": "Score",
+      "timeToGoal": "Time to goal",
+      "priceAsc": "Price (low)",
+      "priceDesc": "Price (high)"
+    },
+    "achievableNow": "Achievable today",
+    "daysToGoal": "{{days}} days",
+    "noGoals": "No goals yet. Add your first.",
+    "weights": "Score weights",
+    "achievedSection": "Achieved",
+    "allAchieved": "No active goals. Check what you've achieved below."
+  },
+  "goalDetail": {
+    "summary": "Summary",
+    "howToAchieve": "How to achieve it",
+    "cashNow": "Buy today with available capital",
+    "needsIncome": "Needs {{count}} income entries",
+    "totalNeeded": "Missing",
+    "withCurrentRate": "At current pace: {{days}} days",
+    "opportunityCost": "Opportunity cost",
+    "delaysOthers": "Delays: {{names}}",
+    "markAchieved": "Mark achieved",
+    "back": "Back"
+  },
+  "income": {
+    "title": "Income",
+    "addIncome": "Add income",
+    "name": "Name",
+    "amount": "Amount",
+    "currency": "Currency",
+    "frequency": "Frequency",
+    "frequencies": {
+      "one_time": "One time",
+      "weekly": "Weekly",
+      "biweekly": "Biweekly",
+      "monthly": "Monthly"
+    },
+    "nextDate": "Next date",
+    "projection90d": "90-day projection",
+    "totalNext90d": "Total next 90 days",
+    "noIncome": "No income registered."
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": "Profile",
+    "baseCurrency": "Base currency",
+    "language": "Language",
+    "theme": "Theme",
+    "themes": {
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "binance": "Binance",
+    "binanceConnect": "Connect Binance",
+    "binanceConnected": "Binance connected",
+    "binanceDisconnect": "Disconnect",
+    "apiKey": "API Key",
+    "apiSecret": "API Secret",
+    "apiKeyHint": "Create a read-only API Key. Never enable trading or withdrawals.",
+    "apiKeyDeviceHint": "Keys live only on this device (not on the server). To use the app on another device, reconnect there.",
+    "saveKeys": "Save and test connection",
+    "weights": "Score weights",
+    "weightsHint": "From 1 to 5, how much each dimension drives goal ordering. 1 = barely counts, 5 = main driver.",
+    "weightUrgency": "Urgency weight",
+    "weightImportance": "Importance weight",
+    "weightRoi": "ROI weight",
+    "export": "Export data",
+    "signOut": "Sign out"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "loading": "Loading…",
+    "error": "Error",
+    "retry": "Retry",
+    "yes": "Yes",
+    "no": "No",
+    "close": "Close"
+  }
+}
