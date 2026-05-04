@@ -58,7 +58,7 @@ export function GoalSheet({
 
   return (
     <Dialog open={open} onOpenChange={(v) => (v ? null : onClose())}>
-      <DialogContent className="max-h-[92vh] overflow-y-auto">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>{editing ? t('common.edit') : t('goals.addGoal')}</DialogTitle>
         </DialogHeader>

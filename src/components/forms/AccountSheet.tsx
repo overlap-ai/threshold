@@ -22,31 +22,7 @@ import {
 import type { Account, AccountType } from '@/lib/types/database';
 
 const TYPES: AccountType[] = ['cash', 'bank', 'credit_card', 'crypto', 'other'];
-const FIAT_CURRENCIES = ['MXN', 'USD', 'EUR'];
-const CRYPTO_CURRENCIES = [
-  'BTC',
-  'ETH',
-  'BNB',
-  'SOL',
-  'XRP',
-  'ADA',
-  'DOGE',
-  'AVAX',
-  'DOT',
-  'MATIC',
-  'LINK',
-  'LTC',
-  'ATOM',
-  'TRX',
-  'NEAR',
-  'ARB',
-  'OP',
-  'TON',
-  'SHIB',
-  'PEPE',
-  'USDT',
-  'USDC',
-];
+const CURRENCIES = ['MXN', 'USD', 'EUR'];
 
 export function AccountSheet({
   open,
@@ -79,8 +55,10 @@ export function AccountSheet({
 
   const editing = !!initial?.id;
   const showDebtToggle = form.type === 'credit_card' || form.type === 'other';
-  const isCrypto = form.type === 'crypto';
-  const currencyOptions = isCrypto ? CRYPTO_CURRENCIES : FIAT_CURRENCIES;
+  const currencyOptions =
+    form.currency && !CURRENCIES.includes(form.currency)
+      ? [...CURRENCIES, form.currency]
+      : CURRENCIES;
 
   return (
     <Dialog open={open} onOpenChange={(v) => (v ? null : onClose())}>
@@ -119,12 +97,6 @@ export function AccountSheet({
                   setForm((f) => ({
                     ...f,
                     type: v as AccountType,
-                    currency:
-                      v === 'crypto' && !CRYPTO_CURRENCIES.includes(f.currency ?? '')
-                        ? 'BTC'
-                        : v !== 'crypto' && !FIAT_CURRENCIES.includes(f.currency ?? '')
-                          ? baseCurrency
-                          : f.currency,
                     is_debt: v === 'credit_card' ? true : f.is_debt,
                   }))
                 }
@@ -162,7 +134,7 @@ export function AccountSheet({
               inputMode="decimal"
               step="any"
               required
-              placeholder={isCrypto ? '0.00000000' : '0.00'}
+              placeholder="0.00"
               value={form.balance === undefined || form.balance === null ? '' : form.balance}
               onChange={(e) => {
                 const v = e.target.value;

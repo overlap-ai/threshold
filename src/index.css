@@ -119,6 +119,14 @@
     -webkit-touch-callout: none;
   }
 
+  /* When focusing an input, ensure ~5rem of breathing room above keyboard. */
+  input:focus,
+  textarea:focus,
+  select:focus {
+    scroll-margin-bottom: 5rem;
+    scroll-margin-top: 5rem;
+  }
+
   /* Allow text selection inside fields, but not on UI chrome — feels native. */
   button,
   a,
